@@ -1,0 +1,987 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unicare Cleaning | Premium Cleaning for Sensitive Homes</title>
+  <meta name="description" content="Unicare Cleaning offers home assessment, digital cleaning guides, and regular cleaning with a thoughtful, structured approach for sensitive homes." />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #121212;
+      --line: rgba(255,255,255,0.12);
+      --text: #f3f3f3;
+      --muted: #b7b7b7;
+      --shadow: 0 18px 50px rgba(0,0,0,0.42);
+      --radius-xl: 26px;
+      --max: 1220px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 22%),
+        linear-gradient(180deg, #060606 0%, #0b0b0b 40%, #101010 100%);
+      color: var(--text);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(calc(100% - 32px), var(--max)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(8,8,8,0.78);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 78px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.14);
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #1d1d1d, #090909);
+      box-shadow: inset 0 0 18px rgba(255,255,255,0.05);
+      overflow: hidden;
+    }
+    .brand-mark img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-text strong {
+      display: block;
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .brand-text span {
+      color: var(--muted);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #e3e3e3;
+      font-size: 0.96rem;
+    }
+    .nav-links a { opacity: 0.88; }
+    .nav-links a:hover { opacity: 1; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    .btn, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      cursor: pointer;
+    }
+    .btn {
+      color: #e2e2e2;
+      background: linear-gradient(180deg, #1a1a1a 0%, #101010 48%, #080808 100%);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow:
+        0 10px 28px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.14),
+        inset 0 -10px 18px rgba(0,0,0,0.35);
+      letter-spacing: 0.01em;
+      text-shadow: 0 0 1px rgba(255,255,255,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: linear-gradient(120deg, transparent 18%, rgba(255,255,255,0.16) 50%, transparent 82%);
+      transform: translateX(-145%);
+      transition: transform .7s ease;
+      mix-blend-mode: screen;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    .btn:hover, .btn-outline:hover { transform: translateY(-1px); }
+    .btn:hover {
+      color: #f3f3f3;
+      border-color: rgba(255,255,255,0.28);
+      box-shadow:
+        0 14px 34px rgba(0,0,0,0.42),
+        inset 0 1px 0 rgba(255,255,255,0.18),
+        inset 0 -10px 18px rgba(0,0,0,0.38);
+    }
+    .btn:hover::after { transform: translateX(145%); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.16);
+      color: #f5f5f5;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero { padding: 72px 0 48px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: #e6e6e6;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+    }
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+    }
+    .hero h1 .muted { color: #bfbfbf; display: block; }
+    .lead {
+      max-width: 640px;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 0 0 28px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #d8d8d8;
+      font-size: 0.96rem;
+    }
+    .trust-row span::before {
+      content: "✦";
+      margin-right: 8px;
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    .hero-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.11);
+  border-radius: 34px;
+  overflow: hidden;
+  min-height: 640px;
+  box-shadow: var(--shadow);
+}
+.hero-clean {
+  background: transparent !important;
+  border: none !important;
+}
+    .hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.1) 100%),
+    url('wallpaper.png') center/cover no-repeat;
+}
+    .hero-card-content {
+  position: relative;
+  z-index: 1;
+  min-height: 640px;
+  padding: 0;
+}
+    .glass-box {
+      background: rgba(12,12,12,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      padding: 20px;
+    }
+    .glass-box h3 { margin: 0 0 10px; font-size: 1.15rem; }
+    .glass-box p { margin: 0; color: #d3d3d3; line-height: 1.6; }
+
+    section { padding: 34px 0; }
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.03em;
+    }
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    .services-grid, .steps-grid, .pricing-grid {
+      display: grid;
+      gap: 18px;
+    }
+    .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+      font-size: 1.35rem;
+      background: linear-gradient(145deg, #ffffff, #cfcfcf);
+      color: #111;
+    }
+    .card h3 { margin: 0 0 10px; font-size: 1.18rem; }
+    .card p, .card li { color: var(--muted); line-height: 1.65; }
+    .card ul { padding-left: 18px; margin: 14px 0 0; }
+
+    .feature-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .feature-panel {
+      min-height: 560px;
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+    }
+    .feature-panel.copy {
+      background: linear-gradient(160deg, #171717, #090909);
+      padding: 30px;
+    }
+    .feature-panel .content {
+      position: absolute;
+      inset: auto 24px 24px 24px;
+      z-index: 1;
+    }
+    .check-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.03);
+    }
+    .check-item b { display: block; margin-bottom: 4px; }
+    .check-item .dot {
+      width: 28px; height: 28px; flex: 0 0 28px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: linear-gradient(145deg, #fff, #ccc);
+      color: #111; font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .steps-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .step-number {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-weight: 800;
+      background: linear-gradient(145deg, #ffffff, #d5d5d5);
+      color: #111;
+      margin-bottom: 16px;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: start;
+    }
+    .price-card.featured {
+      border-color: rgba(255,255,255,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    }
+    .badge {
+      display: inline-flex;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #f5f5f5;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+    .price {
+      font-size: 3rem;
+      font-weight: 800;
+      margin: 8px 0 12px;
+      letter-spacing: -0.04em;
+    }
+    .muted-small { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+    .price-list {
+      display: grid;
+      gap: 12px;
+      margin: 20px 0 26px;
+    }
+    .price-list div {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .cta { padding: 18px 0 70px; }
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+    .cta h2 { margin: 0 0 14px; font-size: clamp(2rem, 4vw, 3.4rem); }
+    .cta p { color: var(--muted); line-height: 1.7; margin: 0; }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 28px 0 50px;
+      color: var(--muted);
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid, .feature-wrap, .pricing-grid, .cta-panel, .services-grid, .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-card, .hero-card-content, .feature-panel { min-height: 520px; }
+    }
+    @media (max-width: 860px) {
+      .nav { min-height: 72px; }
+      .nav-links { display: none; }
+      .brand-text span { display: none; }
+      .hero { padding-top: 42px; }
+      h1 { line-height: 1; }
+      .cta-panel, .card, .feature-panel.copy { padding: 22px; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 560px) {
+      .hero-actions, .trust-row, .footer-grid, .footer-links { gap: 12px; }
+      .btn, .btn-outline { width: 100%; }
+      .hero-card, .hero-card-content, .feature-panel { min-height: 440px; }
+      .brand-mark { width: 46px; height: 46px; }
+      .container { width: min(calc(100% - 20px), var(--max)); }
+    }
+.hero-card img {
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+}
+.calculator {
+  margin-top:60px;
+  background:#0e1013;
+  padding:30px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.calc-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.calc-row input {
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  background:#000;
+  color:white;
+}
+
+.total {
+  margin-top:20px;
+  font-size:20px;
+}
+.popup-form {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.popup-content {
+  background:#0e1013;
+  padding:30px;
+  border-radius:16px;
+  width:90%;
+  max-width:400px;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.popup-content input,
+.popup-content textarea {
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#000;
+  color:white;
+}
+
+.close {
+  float:right;
+  cursor:pointer;
+  font-size:20px;
+}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="Unicare Cleaning home">
+        <div class="brand-mark">
+          <img src="site-favicon.png" alt="Unicare Cleaning logo icon" />
+        </div>
+        <div class="brand-text">
+          <strong>Unicare Cleaning</strong>
+          <span>Structured care for sensitive homes</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#estimate">Estimate</a>
+        <a href="#booking">Booking</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn" href="#booking">Book Now</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Premium residential cleaning • Detail-first care</div>
+          <h1>
+            Thoughtful cleaning
+            <span class="muted">for sensitive homes.</span>
+          </h1>
+          <p class="lead">
+            Unicare Cleaning provides premium home cleaning with extra attention to comfort, detail, and trust. Ideal for families, busy professionals, and homes that need a gentler, more careful approach.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#booking">Book a Service</a>
+            <a class="btn-outline" href="#services">View Services</a>
+          </div>
+
+          <div class="trust-row">
+            <span>Care-focused service</span>
+            <span>Reliable scheduling</span>
+            <span>Attention to sensitive spaces</span>
+          </div>
+        </div>
+<div class="hero-card hero-clean">
+  <div class="hero-card-content" style="display:flex; align-items:center; justify-content:center; height:100%;">
+    
+    <img src="site-logo-header.png"
+     alt="Unicare Cleaning Logo"
+     style="max-width: 320px; width: 60%; opacity: 0.95;" />
+
+  </div>
+</div>
+        
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Our Services</h2>
+            <p>A simple and structured approach to cleaning — focused on clarity, consistency, and real results for your home.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="card">
+            <div class="service-icon"><strong>1</strong></div>
+            <h3>Home Assessment</h3>
+            <p>A one-time visit to understand your home and create a clear cleaning plan.</p>
+            <ul>
+              <li>How each space is used</li>
+              <li>Surfaces and materials</li>
+              <li>Your current cleaning routine</li>
+              <li>Products you already use</li>
+            </ul>
+            <p style="margin-top:14px;"><strong>You receive:</strong></p>
+            <ul>
+              <li>A simple, personalized cleaning plan</li>
+              <li>Clear recommendations</li>
+              <li>Practical steps you can follow</li>
+            </ul>
+            <p style="margin-top:14px;"><strong>Best for:</strong> Anyone who wants a more organized and efficient way to clean their home.</p>
+          </article>
+
+          <article class="card">
+            <div class="service-icon"><strong>2</strong></div>
+            <h3>Digital Cleaning Guide</h3>
+            <p>A simple guide you can use anytime.</p>
+            <ul>
+              <li>What to clean first</li>
+              <li>How to separate areas (kitchen, bathroom, etc.)</li>
+              <li>How to use products correctly</li>
+              <li>Easy routines for daily and weekly cleaning</li>
+            </ul>
+            <p style="margin-top:14px;"><strong>Best for:</strong> People who want a clear system without hiring a service.</p>
+          </article>
+
+          <article class="card">
+            <div class="service-icon"><strong>3</strong></div>
+            <h3>Regular Cleaning</h3>
+            <p>Ongoing cleaning based on a structured and consistent approach.</p>
+            <ul>
+              <li>Kitchen and bathroom cleaning</li>
+              <li>Dusting and surfaces</li>
+              <li>Floors</li>
+              <li>General home upkeep</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us">
+      <div class="container feature-wrap">
+        <div class="feature-panel" style="background:
+          linear-gradient(135deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.15) 100%),
+          url('wallpaper.png') center/cover no-repeat;">
+          <div class="content glass-box">
+            <h3>Refined care. Peaceful spaces.</h3>
+            <p>A clean home is more than appearance — it’s how it feels.
+Unicare delivers a calm, detailed, and trustworthy experience designed to bring comfort to your everyday life.</p>
+          </div>
+        </div>
+
+        <div class="feature-panel copy">
+          <div>
+            <div class="eyebrow">Why families choose Unicare</div>
+            <h2>Care, detail, and trust in every visit</h2>
+            <p class="lead" style="max-width: unset; margin-bottom: 0;">
+              At Unicare Cleaning, we believe a clean home should also feel calm, safe, and cared for. Our service is designed for families who value respect, consistency, and careful attention to every space we enter.
+            </p>
+
+            <div class="check-list">
+              <div class="check-item">
+                <div class="dot">✓</div>
+                <div>
+                  <b>Respectful in-home service</b>
+                  <span>We treat your home with professionalism, discretion, and care from start to finish.</span>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="dot">✓</div>
+                <div>
+                  <b>Consistent quality</b>
+                  <span>Every visit follows a high standard so your home feels fresh, organized, and well cared for.</span>
+                </div>
+              </div>
+              <div class="check-item">
+                <div class="dot">✓</div>
+                <div>
+                  <b>Comfort for sensitive homes</b>
+                  <span>A thoughtful approach for families who want gentle, detail-focused cleaning support.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Simple booking flow</h2>
+            <p>Clear steps make your service feel organized and professional.</p>
+          </div>
+        </div>
+
+        <div class="steps-grid">
+          <article class="card">
+            <div class="step-number">1</div>
+            <h3>Request a quote</h3>
+            <p>Client sends their home details, preferred schedule, and any special cleaning notes.</p>
+          </article>
+          <article class="card">
+            <div class="step-number">2</div>
+            <h3>Choose the service</h3>
+            <p>They choose the cleaning frequency and service style that best fits their home routine.</p>
+          </article>
+          <article class="card">
+            <div class="step-number">3</div>
+            <h3>Enjoy a cared-for home</h3>
+            <p>Clean, calm results with a premium brand experience from first click to final visit.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="estimate">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Instant estimate calculator</h2>
+            <p>This calculator follows your pricing model: base rate at <strong>$0.18 per sqft</strong>, with adjustments for bedrooms, bathrooms, frequency, first-time cleaning, and extras.</p>
+          </div>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="card">
+            <span class="badge">Estimate your service</span>
+            <h3 style="margin-top:0;">Cleaning calculator</h3>
+            <div style="display:grid; gap:14px; margin-top:18px;">
+              <label>
+                <span style="display:block; margin-bottom:8px; color:#e9e9e9; font-weight:600;">Square footage</span>
+                <input id="sqft" type="number" min="300" step="50" value="1200" style="width:100%; padding:14px 16px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:#111; color:#fff;" />
+              </label>
+              <label>
+                <span style="display:block; margin-bottom:8px; color:#e9e9e9; font-weight:600;">Bedrooms</span>
+                <input id="bedrooms" type="number" min="1" max="10" value="2" style="width:100%; padding:14px 16px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:#111; color:#fff;" />
+              </label>
+              <label>
+                <span style="display:block; margin-bottom:8px; color:#e9e9e9; font-weight:600;">Bathrooms</span>
+                <input id="bathrooms" type="number" min="1" max="10" value="1" style="width:100%; padding:14px 16px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:#111; color:#fff;" />
+              </label>
+              <label>
+                <span style="display:block; margin-bottom:8px; color:#e9e9e9; font-weight:600;">Frequency</span>
+                <select id="frequency" style="width:100%; padding:14px 16px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:#111; color:#fff;">
+                  <option value="monthly">Monthly / One-time</option>
+                  <option value="biweekly">Biweekly</option>
+                  <option value="weekly">Weekly</option>
+                </select>
+              </label>
+              <label style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03);">
+                <input id="firstCleaning" type="checkbox" />
+                <span>First-time cleaning (+30%)</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03);">
+                <input id="fridge" type="checkbox" />
+                <span>Inside fridge (+$25)</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03);">
+                <input id="oven" type="checkbox" />
+                <span>Inside oven (+$25)</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03);">
+                <input id="petHair" type="checkbox" />
+                <span>Heavy pet hair (+$20)</span>
+              </label>
+            </div>
+          </article>
+
+          <article class="card price-card featured">
+            <span class="badge">Live estimate</span>
+            <h3 style="margin-top:0;">Estimated total</h3>
+            <div class="price" id="estimateTotal">$236</div>
+            <p class="muted-small" id="estimateSummary">Based on 1200 sqft, 2 bedrooms, 1 bathroom, monthly service.</p>
+            <div class="price-list">
+              <div id="lineBase">Base at $0.18/sqft: $216</div>
+              <div id="lineBedrooms">Bedroom adjustment: $0</div>
+              <div id="lineBathrooms">Bathroom adjustment: $20</div>
+              <div id="lineFrequency">Frequency discount: $0</div>
+              <div id="lineFirst">First cleaning adjustment: $0</div>
+              <div id="lineExtras">Extras: $0</div>
+            </div>
+            <a class="btn" onclick="openQuoteForm()">Request this Quote</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Book a Service</h2>
+            <p>Select the service that best fits your home.</p>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article class="card">
+            <div class="service-icon"><strong>1</strong></div>
+            <h3>Home Assessment</h3>
+            <p>Understand your home and receive a personalized cleaning plan.</p>
+            <a class="btn" href="https://calendly.com/contact-unicarecleaning/30min" target="_blank">Book Assessment</a>
+          </article>
+
+          <article class="card">
+            <div class="service-icon"><strong>2</strong></div>
+            <h3>Regular Cleaning</h3>
+            <p>Ongoing cleaning based on a structured and consistent approach.</p>
+            <a class="btn" href="https://calendly.com/contact-unicarecleaning/regular-cleaning" target="_blank">Request Booking</a>
+          </article>
+
+          <article class="card">
+            <div class="service-icon"><strong>3</strong></div>
+            <h3>First Cleaning</h3>
+            <p>Initial detailed cleaning to prepare your home for maintenance.</p>
+            <a class="btn" href="https://calendly.com/contact-unicarecleaning/first-cleaning" target="_blank">Book First Cleaning</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+   <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <div class="eyebrow">Need help choosing?</div>
+            <h2>We’ll help you find the best service for your home.</h2>
+            <p>If you are not sure which option fits your home best, send us an email and we will guide you to the right service.</p>
+          </div>
+          <div style="display:grid; gap:12px;">
+            <a class="btn" onclick="openForm()">
+  Email for a Quote
+</a>
+            <a class="btn-outline" href="#home">Back to Top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <strong style="display:block; color:#fff; margin-bottom:8px;">Unicare Cleaning</strong>
+        <span>Thoughtful cleaning for sensitive homes</span>
+      </div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#estimate">Estimate</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+<!-- 👇 COLOCA AQUI -->
+  <div style="text-align:center; margin-top:20px; font-size:0.75rem; color:#555;">
+    © 2026 Unicare Cleaning LLC. All rights reserved.
+    <br>
+    <span style="opacity:0.7;">
+      Website by Rinko Digital
+    </span>
+  </div>
+  </footer>
+
+  <script>
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+    }
+
+    function calculateEstimate() {
+      const sqft = Math.max(0, Number(document.getElementById('sqft').value) || 0);
+      const bedrooms = Math.max(1, Number(document.getElementById('bedrooms').value) || 1);
+      const bathrooms = Math.max(1, Number(document.getElementById('bathrooms').value) || 1);
+      const frequency = document.getElementById('frequency').value;
+      const firstCleaning = document.getElementById('firstCleaning').checked;
+      const fridge = document.getElementById('fridge').checked;
+      const oven = document.getElementById('oven').checked;
+      const petHair = document.getElementById('petHair').checked;
+
+      const baseRate = 0.18;
+      const base = sqft * baseRate;
+      const bedroomAdjustment = Math.max(0, bedrooms - 2) * 15;
+      const bathroomAdjustment = bathrooms * 20;
+      const extras = (fridge ? 25 : 0) + (oven ? 25 : 0) + (petHair ? 20 : 0);
+
+      const subtotal = base + bedroomAdjustment + bathroomAdjustment + extras;
+      let frequencyDiscountRate = 0;
+      if (frequency === 'weekly') frequencyDiscountRate = 0.15;
+      if (frequency === 'biweekly') frequencyDiscountRate = 0.10;
+
+      const frequencyDiscount = subtotal * frequencyDiscountRate;
+      const afterFrequency = subtotal - frequencyDiscount;
+      const firstAdjustment = firstCleaning ? afterFrequency * 0.30 : 0;
+      const total = afterFrequency + firstAdjustment;
+
+      document.getElementById('estimateTotal').textContent = formatCurrency(total);
+      document.getElementById('estimateSummary').textContent = `Based on ${sqft} sqft, ${bedrooms} bedroom${bedrooms > 1 ? 's' : ''}, ${bathrooms} bathroom${bathrooms > 1 ? 's' : ''}, ${frequency} service${firstCleaning ? ', first-time cleaning' : ''}.`;
+      document.getElementById('lineBase').textContent = `Base at $0.18/sqft: ${formatCurrency(base)}`;
+      document.getElementById('lineBedrooms').textContent = `Bedroom adjustment: ${formatCurrency(bedroomAdjustment)}`;
+      document.getElementById('lineBathrooms').textContent = `Bathroom adjustment: ${formatCurrency(bathroomAdjustment)}`;
+      document.getElementById('lineFrequency').textContent = `Frequency discount: -${formatCurrency(frequencyDiscount)}`;
+      document.getElementById('lineFirst').textContent = `First cleaning adjustment: ${formatCurrency(firstAdjustment)}`;
+      document.getElementById('lineExtras').textContent = `Extras: ${formatCurrency(extras)}`;
+    }
+
+    ['sqft','bedrooms','bathrooms','frequency','firstCleaning','fridge','oven','petHair'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', calculateEstimate);
+        el.addEventListener('change', calculateEstimate);
+      }
+    });
+
+    calculateEstimate();
+  </script>
+
+<div id="quoteForm" class="popup-form">
+  <div class="popup-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+
+    <h3>Request a Quote</h3>
+
+    <form action="https://formspree.io/f/xdaypezo" method="POST">
+      
+      <input type="text" name="name" placeholder="Your Name" required>
+      
+      <input type="email" name="email" placeholder="Your Email" required>
+      
+      <input type="text" name="address" placeholder="Address">
+      
+      <textarea name="message" placeholder="Tell us about your home..." required></textarea>
+
+      <button type="submit" class="btn">Send Request</button>
+
+    </form>
+
+  </div>
+</div>
+<script>
+function openForm() {
+  document.getElementById("quoteForm").style.display = "flex";
+}
+
+function closeForm() {
+  document.getElementById("quoteForm").style.display = "none";
+}
+</script>
+<div id="quoteRequestForm" class="popup-form">
+  <div class="popup-content">
+    <span class="close" onclick="closeQuoteForm()">&times;</span>
+
+    <h3>Request this Quote</h3>
+
+    <form action="https://formspree.io/f/xdaypezo" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="address" placeholder="Address">
+
+      <textarea name="message" placeholder="Additional details"></textarea>
+
+      <input type="hidden" name="quote_total" id="form_quote_total">
+      <input type="hidden" name="square_footage" id="form_sqft">
+      <input type="hidden" name="bedrooms" id="form_bedrooms">
+      <input type="hidden" name="bathrooms" id="form_bathrooms">
+      <input type="hidden" name="frequency" id="form_frequency">
+      <input type="hidden" name="first_cleaning" id="form_first_cleaning">
+      <input type="hidden" name="inside_fridge" id="form_fridge">
+      <input type="hidden" name="inside_oven" id="form_oven">
+      <input type="hidden" name="heavy_pet_hair" id="form_petHair">
+
+      <div style="margin-top:15px; color:#bbb; font-size:14px;">
+        Quote to send: <strong id="quotePreview">$0</strong>
+      </div>
+
+      <button type="submit" class="btn" style="margin-top:15px;">Send Quote Request</button>
+    </form>
+  </div>
+</div>
+<script>
+function openQuoteForm() {
+  const quoteTotal = document.getElementById("estimateTotal")?.innerText || "$0";
+  const sqft = document.getElementById("sqft")?.value || "";
+  const bedrooms = document.getElementById("bedrooms")?.value || "";
+  const bathrooms = document.getElementById("bathrooms")?.value || "";
+  const frequency = document.getElementById("frequency")?.value || "";
+  const firstCleaning = document.getElementById("firstCleaning")?.checked ? "Yes" : "No";
+  const fridge = document.getElementById("fridge")?.checked ? "Yes" : "No";
+  const oven = document.getElementById("oven")?.checked ? "Yes" : "No";
+  const petHair = document.getElementById("petHair")?.checked ? "Yes" : "No";
+
+  document.getElementById("form_quote_total").value = quoteTotal;
+  document.getElementById("form_sqft").value = sqft;
+  document.getElementById("form_bedrooms").value = bedrooms;
+  document.getElementById("form_bathrooms").value = bathrooms;
+  document.getElementById("form_frequency").value = frequency;
+  document.getElementById("form_first_cleaning").value = firstCleaning;
+  document.getElementById("form_fridge").value = fridge;
+  document.getElementById("form_oven").value = oven;
+  document.getElementById("form_petHair").value = petHair;
+
+  document.getElementById("quotePreview").innerText = quoteTotal;
+  document.getElementById("quoteRequestForm").style.display = "flex";
+}
+
+function closeQuoteForm() {
+  document.getElementById("quoteRequestForm").style.display = "none";
+}
+</script>
+</body>
+</html>
